@@ -5,16 +5,27 @@ aliases: [원칙과 사고방식]
 type: context
 status: active
 created_at: 2026-06-19
-created_by: 이상협
+created_by: 정회석
 updated_at: 2026-07-01
-updated_by: 이상협
+updated_by: 정회석
 last_verified_at: 2026-07-01
-last_verified_by: 이상협
+last_verified_by: 정회석
+audit_log:
+  - action: created
+    at: 2026-06-19
+    by: 정회석
+  - action: updated
+    at: 2026-07-01
+    by: 정회석
+  - action: updated
+    at: 2026-07-02
+    by: 정회석
+    note: "relations 단방향 정리"
 tags: [principles, verification, writing]
 stack: common
 scope: thinking-principles
-source:
-  - user-notes
+source: user-notes
+relations: []
 ---
 
 # 원칙과 사고방식
@@ -69,8 +80,8 @@ source:
 
 나쁜 서술:
 
-> 성능 최적화를 통해 API 응답 속도를 크게 개선했습니다.
+> 성능 최적화를 통해 사용자 경험을 크게 개선했습니다.
 
 좋은 서술:
 
-> 목록 API의 p95 지연이 병목이었다. 인스턴스를 늘려 처리량을 확보하는 선택지도 있었지만, 실제 쿼리 로그를 보니 연관 엔티티를 건마다 조회하는 N+1이 원인이었다. 그래서 Prisma `include`로 한 번에 가져오도록 바꿨고, 그 대신 단일 쿼리가 무거워지는 것과 일부 필드는 필요할 때만 별도 조회로 남겨 두는 절충을 수용했다.
+> 초기 렌더링에서 JS 실행 시간이 병목이었다. 번들 크기를 줄이는 선택지도 있었지만, 실제 측정에서는 hydration 이후 특정 컴포넌트 초기화 비용이 더 컸다. 그래서 해당 초기화를 사용자 인터랙션 이후로 미뤘고, 그 대신 첫 인터랙션 시점의 지연 가능성을 수용했다.

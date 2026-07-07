@@ -5,33 +5,33 @@ aliases: [위키 동기화]
 type: operation
 status: active
 created_at: 2026-06-30
-created_by: 이상협
-updated_at: 2026-07-01
-updated_by: 이상협
-last_verified_at: 2026-07-01
-last_verified_by: 이상협
+created_by: 정회석
+updated_at: 2026-07-02
+updated_by: 정회석
 audit_log:
   - action: created
     at: 2026-06-30
-    by: 이상협
-    commit: ""
+    by: 정회석
   - action: updated
-    at: 2026-07-01
-    by: 이상협
-    commit: ""
-    note: "frontmatter 스키마 v2"
+    at: 2026-07-02
+    by: 정회석
 tags: [common, convention, wiki, sync]
 stack: common
 scope: wiki-sync
+relations:
+  - id: operation-wiki-versioning
+    label: related
+  - id: index-index
+    label: related
 ---
 
 # 위키 동기화
 
-로컬 위키와 원격(`origin/main`)을 최신 상태로 맞추는 기준. 버전 올리는 기준, 절차는 [위키 버전 관리](wiki-versioning.md).
+로컬 위키와 원격(`origin/main`)을 최신 상태로 맞추는 기준. 버전 올리는 기준·절차는 [[wiki-versioning]].
 
 ## 원격 버전 동기화
 
-위키를 읽거나 버전 작업을 하기 전, GitLab Release 최신 tag와 [목차](../index.md)의 `version`이 같은지 확인한다. tag는 `vX.Y.Z`, version은 `X.Y.Z`이므로 `v${version}`으로 맞춰 본다.
+위키를 읽거나 버전 작업을 하기 전, GitLab Release 최신 tag와 [20_wiki/index.md](/20_wiki/index.md)의 `version`이 같은지 확인한다. tag는 `vX.Y.Z`, version은 `X.Y.Z`이므로 `v${version}`으로 맞춰 본다.
 
 불일치 시 먼저 원격을 최신화한다.
 
@@ -39,7 +39,7 @@ scope: wiki-sync
 git fetch origin main --tags
 ```
 
-`origin/main`의 [목차](../index.md)가 더 최신이면 작업 전 갱신한다.
+`origin/main`의 `index.md`가 더 최신이면 작업 전 갱신한다.
 
 ```sh
 git pull --ff-only origin main
@@ -49,5 +49,5 @@ git pull --ff-only origin main
 
 ## 관련 문서
 
-- [목차](../index.md)
-- [위키 버전 관리](wiki-versioning.md)
+- [[index]]
+- [[wiki-versioning]]

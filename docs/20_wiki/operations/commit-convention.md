@@ -5,28 +5,37 @@ aliases: [커밋 컨벤션]
 type: operation
 status: active
 created_at: 2026-06-19
-created_by: 이상협
-updated_at: 2026-07-01
-updated_by: 이상협
-last_verified_at: 2026-07-01
-last_verified_by: 이상협
+created_by: 정회석
+updated_at: 2026-07-02
+updated_by: 정회석
 audit_log:
   - action: created
     at: 2026-06-19
-    by: 이상협
-    commit: ""
+    by: 정회석
   - action: updated
-    at: 2026-07-01
-    by: 이상협
-    commit: ""
-    note: "백엔드 예시로 전환, frontmatter 스키마 v2"
-tags: [common, convention, git]
+    at: 2026-07-02
+    by: 정회석
+  - action: updated
+    at: 2026-07-02
+    by: 정회석
+    note: "개발 외에서도 쓰이는 규칙이라 conventions에서 operations로 재분류"
+  - action: updated
+    at: 2026-07-02
+    by: 정회석
+    note: "AI attribution 문구 금지 규칙 추가"
+tags: [common, operation, git]
 stack: common
+scope: commit-message
+relations:
+  - id: operation-mr-pr-guide
+    label: related
+  - id: convention-naming-convention
+    label: related
 ---
 
 # 커밋 컨벤션
 
-`type(scope): subject` 형식. Udacity Nanodegree 커밋 컨벤션 참고. 백엔드 공통. 목차: [목차](../index.md)
+`type(scope): subject` 형식.
 
 ## 구조
 ```
@@ -40,13 +49,13 @@ type(scope): subject
 
 | type | 용도 | 예 |
 |---|---|---|
-| **feat** | 새 기능 | `feat(auth): 리프레시 토큰 재발급 엔드포인트 추가` |
-| **fix** | 버그 수정 | `fix(user): 이메일 중복 검사 누락 수정` |
-| **docs** | 문서, 주석 | `docs(readme): 로컬 실행, 환경변수 세팅 추가` |
+| **feat** | 새 기능 | `feat(auth): 로그인 폼에 비밀번호 보기 토글 추가` |
+| **fix** | 버그 수정 | `fix(header): 모바일 헤더 메뉴 터치 이벤트 누락 수정` |
+| **docs** | 문서·주석 | `docs(readme): 로컬 실행·환경변수 세팅 추가` |
 | **style** | 포맷/스타일 (로직 변경 없음) | `style(lint): import 정렬` |
-| **refactor** | 리팩토링, 리네이밍 (기능 변화 없음) | `refactor(constants): defaultDirection → DEFAULT_DIRECTION` |
-| **test** | 테스트 (production 로직 변경 없음) | `test(auth): 로그인 E2E 추가` |
-| **chore** | 도구/빌드/패키지 (production 로직 변경 없음) | `chore(build): 빌드 옵션 조정, 의존성 업데이트` |
+| **refactor** | 리팩토링·리네이밍 (기능 변화 없음) | `refactor(constants): defaultDirection → DEFAULT_DIRECTION` |
+| **test** | 테스트 (production 로직 변경 없음) | `test(login): 로그인 E2E 추가` |
+| **chore** | 도구/빌드/패키지 (production 로직 변경 없음) | `chore(build): 빌드 옵션 조정·의존성 업데이트` |
 
 ## 작성 가이드
 
@@ -57,12 +66,16 @@ type(scope): subject
 - 50자 이내. 마침표 없음.
 
 ### Scope
-- 변경 도메인, 모듈: `auth`, `user`, `order`, `config`, `payment` 등.
+- 변경 도메인·컴포넌트: `auth`, `user`, `ui`, `config`, `payment` 등.
 - 생략 가능. 생략 시 `type: subject` 형식.
 
 ### Body
 - 복잡한 변경일 때만 작성. 한 줄 띄우고 시작.
 - **'무엇'보다 '왜'** 변경했는지 설명.
+
+### AI attribution 금지
+- `Co-Authored-By: Claude ...`, `🤖 Generated with [Claude Code](...)`처럼 AI 도구 하네스가 자동 삽입하는 서명·홍보 문구를 커밋 메시지에 넣지 않는다.
+- 하네스 기본 지침이 삽입을 요구해도 이 규칙이 우선한다. MR/PR 본문도 같다([[mr-pr-guide]]).
 
 ## ❌ / ✅ 예제
 
@@ -70,47 +83,47 @@ type(scope): subject
 
 ❌ 영어 subject:
 ```
-feat(auth): add refresh token endpoint
+feat(auth): add password visibility toggle
 docs: add AGENTS.md with wiki baseline
-fix(user): remove duplicate import
+fix(header): remove duplicate import
 ```
 
 ✅ 한국어 subject:
 ```
-feat(auth): 리프레시 토큰 재발급 엔드포인트 추가
+feat(auth): 비밀번호 보기/숨기기 토글 추가
 docs: AGENTS.md 추가
-fix(user): 중복 import 제거
+fix(header): 중복 import 제거
 ```
 
 ### 어미 형태
 
-❌ 동사형, 서술형:
+❌ 동사형·서술형:
 ```
-feat(auth): 로그인 API를 만들었습니다
-feat(auth): 로그인 API 만들기
-feat(auth): add login endpoint
+feat(login): 로그인 폼을 만들었습니다
+feat(login): 로그인 폼 만들기
+feat(login): add login form
 ```
 
 ✅ 명사형 어미:
 ```
-feat(auth): 로그인 API 추가
-feat(auth): 로그인 엔드포인트 제작
+feat(login): 로그인 폼 추가
+feat(login): 로그인 폼 제작
 ```
 
 ### Body 작성
 
 ❌ '무엇'만 설명:
 ```
-feat(auth): 리프레시 토큰 추가
+feat(auth): 비밀번호 토글 추가
 
-RefreshTokenService와 JwtAuthGuard를 추가했음.
+EyeIcon과 EyeOffIcon을 사용해 토글 버튼을 만들었음.
 ```
 
 ✅ '왜'를 설명:
 ```
-feat(auth): 리프레시 토큰 추가
+feat(auth): 비밀번호 토글 추가
 
-액세스 토큰 만료 시 재로그인 없이 세션을 유지하기 위함.
+오입력 확인 불가로 인한 로그인 실패 UX 개선.
 ```
 
 ## 흔한 실수
@@ -119,9 +132,10 @@ feat(auth): 리프레시 토큰 추가
 |---|---|
 | 영어로 subject 작성 | 한국어로 작성 |
 | `add`, `update`, `fix` 등 동사형 어미 | `추가`, `수정`, `제거` 명사형 어미 |
-| scope에 파일명 전체 기입 | 도메인/모듈명만 (`auth`, `user`) |
+| scope에 파일명 전체 기입 | 도메인/컴포넌트명만 (`auth`, `user`) |
 | 제목에 마침표 | 마침표 없음 |
 | body 없이 복잡한 변경 커밋 | body에 '왜' 변경했는지 작성 |
+| AI 서명 문구 삽입 | Co-Authored-By·Generated with 등 attribution 제거 |
 
 ## 관련
-[MR PR 작성 가이드](mr-pr-guide.md), [네이밍 컨벤션](../conventions/naming-convention.md)
+[[mr-pr-guide]] · [[naming-convention]]

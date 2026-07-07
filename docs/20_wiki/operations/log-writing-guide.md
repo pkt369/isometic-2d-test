@@ -5,23 +5,25 @@ aliases: [로그 작성 규칙]
 type: operation
 status: active
 created_at: 2026-07-01
-created_by: 이상협
-updated_at: 2026-07-01
-updated_by: 이상협
-last_verified_at: 2026-07-01
-last_verified_by: 이상협
+created_by: 정회석
+updated_at: 2026-07-02
+updated_by: 정회석
+last_verified_at: 2026-07-02
+last_verified_by: 정회석
 audit_log:
   - action: created
     at: 2026-07-01
-    by: 이상협
-    commit: ""
+    by: 정회석
     note: "일 단위 로그 규칙"
   - action: updated
-    at: 2026-07-01
-    by: 이상협
-    commit: ""
-    note: "프론트/백엔드 로그 규칙 통일 — 작성자(괄호, 복수 쉼표), 버전, collapsed는 백엔드 방식, 커밋 해시 제거"
-tags: [common, convention, wiki, log]
+    at: 2026-07-02
+    by: 정회석
+    note: "작성자 표기·버전 괄호 형식 도입, 커밋 해시 제거, 압축 기준일 명확화"
+  - action: updated
+    at: 2026-07-02
+    by: 정회석
+    note: "프론트/백엔드 로그 규칙 통일 — 버전 version X.Y.Z 표기, 압축 항목 collapsed 마커 도입"
+tags: [common, operation, wiki, log]
 stack: common
 scope: log-authoring
 relations:
@@ -29,27 +31,29 @@ relations:
     label: related
   - id: operation-wiki-versioning
     label: related
+  - id: operation-project-wiki-guide
+    label: related
 ---
 
 # log-writing-guide
 
 ## 한 줄 요약
 
-로그의 작성, 압축 표준. **하루 단위**로 작업 이력을 쌓고, 날짜 뒤 괄호에 작성자를 남긴다. 메인 위키 [작업 이력](../log.md)과 개별 프로젝트 `docs/worklog.md`([개별 프로젝트 위키 생성 및 작성 가이드](project-wiki-guide.md)) 양쪽에 적용한다. 목차: [목차](../index.md)
+로그의 작성·압축 표준. **하루 단위**로 작업 이력을 쌓고, 날짜 뒤 괄호에 작성자를 남긴다. frontend-wiki의 [20_wiki/log.md](/20_wiki/log.md)와 개별 프로젝트 `docs/worklog.md`([[project-wiki-guide]]) 양쪽에 적용한다. 목차: [[index]]
 
 ## 적용 대상
 
-- 메인 위키 [작업 이력](../log.md)
+- frontend-wiki의 [20_wiki/log.md](/20_wiki/log.md)
 - 개별 프로젝트 `docs/worklog.md`
 
 ## 작성 규칙
 
 - **하루 단위로 쌓는다. 한 항목 = 하루.** 최신 날짜가 맨 위.
 - **날짜 뒤 괄호에 작성자를 남긴다.** git author 이름 기준, 복수면 쉼표로 나열한다.
-- 최대한 간결하게. 무엇을, 왜, 버전 변화만. 구현 세부는 뺀다.
+- 최대한 간결하게. 무엇을·왜·버전 변화만. 구현 세부는 뺀다.
 - 괄호는 작성자에만 쓴다. 그 외 부가설명 괄호는 금지 — 필요하면 쉼표나 마침표로 문장을 잇는다.
-- 버전이 바뀌면 항목 끝에 `version X.Y.Z`로 남긴다([위키 버전 관리](wiki-versioning.md)).
-- 운영 문서, [목차](../index.md)가 바뀐 작업은 반드시 남긴다.
+- 버전이 바뀌면 항목 끝에 `version X.Y.Z`로 남긴다([[wiki-versioning]]).
+- 운영 문서·[20_wiki/index.md](/20_wiki/index.md)가 바뀐 작업은 반드시 남긴다.
 
 형식:
 
@@ -60,7 +64,7 @@ YYYY-MM-DD (작성자1, 작성자2) — 무엇을 왜 했나. version X.Y.Z.
 예:
 
 ```text
-2026-07-02 (이상협) — 경로, 링크 표기 표준 신설. version 0.1.1.
+2026-07-02 (홍길동) — 경로·링크 표기 표준 신설. version 0.1.1.
 ```
 
 ## 압축 규칙
@@ -76,11 +80,11 @@ YYYY-MM-DD (작성자1, 작성자2) — 무엇을 왜 했나. version X.Y.Z.
 형식:
 
 ```text
-YYYY.MM.DD ~ YYYY.MM.DD (작성자 전원), collapsed — 압축 요약. version 범위.
+YYYY.MM.DD ~ YYYY.MM.DD (작성자 전원) · collapsed — 압축 요약. version 범위.
 ```
 
 ## 관련 문서
 
-- [위키 작성 가이드](wiki-authoring-guide.md)
-- [위키 버전 관리](wiki-versioning.md)
-- [개별 프로젝트 위키 생성 및 작성 가이드](project-wiki-guide.md)
+- [[wiki-authoring-guide]]
+- [[wiki-versioning]]
+- [[project-wiki-guide]]

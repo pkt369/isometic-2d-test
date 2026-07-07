@@ -5,16 +5,25 @@ aliases: [글쓰기 스타일]
 type: context
 status: active
 created_at: 2026-06-19
-created_by: 이상협
+created_by: 정회석
 updated_at: 2026-07-01
-updated_by: 이상협
+updated_by: 정회석
 last_verified_at: 2026-07-01
-last_verified_by: 이상협
+last_verified_by: 정회석
+audit_log:
+  - action: created
+    at: 2026-06-19
+    by: 정회석
+  - action: updated
+    at: 2026-07-01
+    by: 정회석
 tags: [writing, voice, style]
 stack: common
 scope: writing-style
-source:
-  - user-notes
+source: user-notes
+relations:
+  - id: context-thinking-principles
+    label: related
 ---
 
 # 글쓰기 스타일
